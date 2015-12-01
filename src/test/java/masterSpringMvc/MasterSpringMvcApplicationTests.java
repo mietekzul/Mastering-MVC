@@ -11,6 +11,7 @@ public class MasterSpringMvcApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		System.out.println("Tak ¿eby by³o co do gita dodaæ...");
 	}
 
 }
