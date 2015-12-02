@@ -1,11 +1,13 @@
 package masterSpringMvc.search.api;
 
-import java.util.List;
 
+import masterSpringMvc.search.LightTweet;
 import masterSpringMvc.search.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.twitter.api.Tweet;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -20,7 +22,7 @@ public class SearchApiController {
 	}
 
 	@RequestMapping(value = "/{searchType}", method = RequestMethod.GET)
-	public List<Tweet> search(@PathVariable String searchType, @MatrixVariable List<String> keywords) {
+	public List<LightTweet> search(@PathVariable String searchType, @MatrixVariable List<String> keywords) {
 		return searchService.search(searchType, keywords);
 	}
 }

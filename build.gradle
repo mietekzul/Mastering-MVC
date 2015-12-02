@@ -6,7 +6,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") 
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath('io.spring.gradle:dependency-management-plugin:0.5.2.RELEASE')
     }
 }
@@ -14,8 +14,8 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
-apply plugin: 'spring-boot' 
-apply plugin: 'io.spring.dependency-management' 
+apply plugin: 'spring-boot'
+apply plugin: 'io.spring.dependency-management'
 
 jar {
     baseName = 'masterSpringMvcdemo'
@@ -30,13 +30,14 @@ repositories {
 
 
 dependencies {
+    compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310')
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')
     compile('org.springframework.social:spring-social-twitter:1.1.0.RELEASE')
     compile('org.webjars:materializecss:0.96.0')
     compile('org.webjars:jquery:2.1.4')
 
-    testCompile('org.springframework.boot:spring-boot-starter-test') 
+    testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
 
