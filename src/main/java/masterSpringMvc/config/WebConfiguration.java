@@ -19,6 +19,7 @@ import org.springframework.web.util.UrlPathHelper;
 import masterSpringMvc.date.USLocalDateFormatter;
 
 @Configuration
+//@EnableSwagger2
 public class WebConfiguration extends WebMvcConfigurerAdapter {
 
 	@Override
