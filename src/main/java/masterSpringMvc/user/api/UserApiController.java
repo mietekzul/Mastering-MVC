@@ -4,9 +4,13 @@ import masterSpringMvc.error.EntityNotFoundException;
 import masterSpringMvc.user.User;
 import masterSpringMvc.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
 
 import java.util.List;
 
@@ -15,9 +19,12 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api")
+//@Secured("ROLE_ADMIN")
 public class UserApiController {
 
     private UserRepository userRepository;
+
+
 
     @Autowired
     public UserApiController(UserRepository userRepository) {
