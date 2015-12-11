@@ -6,7 +6,12 @@ import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomi
 import org.springframework.boot.context.embedded.ErrorPage;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.security.crypto.encrypt.Encryptors;
+import org.springframework.social.connect.ConnectionFactoryLocator;
+import org.springframework.social.connect.UsersConnectionRepository;
+import org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository;
 import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -20,6 +25,8 @@ import masterSpringMvc.date.USLocalDateFormatter;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import javax.sql.DataSource;
 
 @Configuration
 @EnableSwagger2
@@ -81,5 +88,11 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
             .paths(path -> path.startsWith("/api"))
             .build();
     }
+
+//    @Bean
+//    @Primary
+//    public UsersConnectionRepository getUsersConnectionRepository(DataSource dataSource, ConnectionFactoryLocator connectionFactoryLocator){
+//        return new JdbcUsersConnectionRepository(dataSource, connectionFactoryLocator, Encryptors.noOpText());
+//    }
 
 }

@@ -17,8 +17,8 @@ public class AuthenticatingSignInAdapter implements SignInAdapter {
     public static void authenticate(Connection<?> connection) {
         UserProfile userProfile = connection.fetchUserProfile();
         String username = userProfile.getUsername();
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, null, null);
-        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(username, null, null);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
         System.out.println(String.format("User %s %s connected.", userProfile.getFirstName(), userProfile.getLastName()));
     }
 

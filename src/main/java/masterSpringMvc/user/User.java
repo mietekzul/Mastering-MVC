@@ -10,7 +10,7 @@ import java.util.List;
 public class User {
     private String twitterHandle;
     private String email;
-    private LocalDate birthDate;
+//    private LocalDate birthDate;
     private List<String> tastes = new ArrayList<>();
 
     public String getTwitterHandle() {
@@ -29,13 +29,13 @@ public class User {
         this.email = email;
     }
 
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
+//    public LocalDate getBirthDate() {
+//        return birthDate;
+//    }
 
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
+//    public void setBirthDate(LocalDate birthDate) {
+//        this.birthDate = birthDate;
+//    }
 
     public List<String> getTastes() {
         return tastes;

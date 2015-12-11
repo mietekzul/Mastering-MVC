@@ -19,7 +19,8 @@ public class SignupController {
     @Autowired
     public SignupController(ConnectionFactoryLocator connectionFactoryLocator,
                             UsersConnectionRepository connectionRepository) {
-        signInUtils = new ProviderSignInUtils(connectionFactoryLocator, connectionRepository);
+//        signInUtils = new ProviderSignInUtils(connectionFactoryLocator, connectionRepository);
+        signInUtils = new ProviderSignInUtils();
     }
 
     @RequestMapping(value = "/signup")

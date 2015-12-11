@@ -57,7 +57,7 @@ public class UserApiController {
 //        return userRepository.save(email, user);
     }
 
-    @RequestMapping(value = "user/{email}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/user/{email}", method = RequestMethod.DELETE)
     public ResponseEntity<User> deleteUser(@PathVariable String email) throws EntityNotFoundException {
         if (!userRepository.exists(email)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
