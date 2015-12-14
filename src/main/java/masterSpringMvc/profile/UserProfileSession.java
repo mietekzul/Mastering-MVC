@@ -17,25 +17,13 @@ import org.springframework.stereotype.Component;
 @Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class UserProfileSession implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	private URL picturePath;
-
-	public void setPicturePath(Resource picturePath) throws IOException {
-		this.picturePath = picturePath.getURL();
-	}
-
-	public Resource getPicturePath() {
-		return picturePath == null ? null : new UrlResource(picturePath);
-	}
-
 	private String twitterHandle;
 	private String email;
 	private LocalDate birthDate;
 	private List<String> tastes = new ArrayList<>();
+	private URL picturePath;
+
+	private static final long serialVersionUID = 1L;
 
 	public void saveForm(ProfileForm profileForm) {
 		this.twitterHandle = profileForm.getTwitterHandle();
@@ -53,8 +41,22 @@ public class UserProfileSession implements Serializable {
 		return profileForm;
 	}
 
+	public void setPicturePath(Resource picturePath) throws IOException {
+		this.picturePath = picturePath.getURL();
+	}
+
+	public Resource getPicturePath() {
+		return picturePath == null ? null : new UrlResource(picturePath);
+	}
+
+
+
 	public List<String> getTastes() {
 		ProfileForm profileForm = new ProfileForm();
 		return profileForm.getTastes();
 	}
+
+    public void setTastes(List<String> tastes) {
+        this.tastes = tastes;
+    }
 }

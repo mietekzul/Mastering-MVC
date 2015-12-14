@@ -28,8 +28,6 @@ public class SearchService {
             .map(LightTweet::ofTweet)
             .collect(Collectors.toList());
 
-//		List<LightTweet> results = searches.stream().map(params -> twitter.searchOperations().search(params))
-//				.flatMap(searchResults -> searchResults.getTweets().stream()).collect(Collectors.toList());
 		return results;
 	}
 

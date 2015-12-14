@@ -20,7 +20,7 @@ public class SignupController {
     public SignupController(ConnectionFactoryLocator connectionFactoryLocator,
                             UsersConnectionRepository connectionRepository) {
 //        signInUtils = new ProviderSignInUtils(connectionFactoryLocator, connectionRepository);
-        signInUtils = new ProviderSignInUtils();
+        signInUtils = new ProviderSignInUtils(connectionFactoryLocator, connectionRepository);
     }
 
     @RequestMapping(value = "/signup")

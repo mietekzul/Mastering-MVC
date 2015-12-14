@@ -1,17 +1,15 @@
 package masterSpringMvc.config;
 
-import java.time.LocalDate;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import masterSpringMvc.date.USLocalDateFormatter;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.boot.context.embedded.ErrorPage;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.format.FormatterRegistry;
-import org.springframework.security.crypto.encrypt.Encryptors;
-import org.springframework.social.connect.ConnectionFactoryLocator;
-import org.springframework.social.connect.UsersConnectionRepository;
-import org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -20,13 +18,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.util.UrlPathHelper;
-
-import masterSpringMvc.date.USLocalDateFormatter;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import javax.sql.DataSource;
+import java.time.LocalDate;
 
 @Configuration
 @EnableSwagger2
@@ -49,28 +45,14 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
         return localeChangeInterceptor;
     }
 
-    @Bean
-    public EmbeddedServletContainerCustomizer containetCustomizer() {
-        // EmbeddedServletContainerCustomizer embeddedServletContainerCustomizer
-        // = new EmbeddedServletContainerCustomizer() {
-        //
-        // @Override
-        // public void customize(ConfigurableEmbeddedServletContainer container)
-        // {
-        // container.addErrorPages(new ErrorPage(MultipartException.class,
-        // "/uploadError"));
-        // }
-        // };
-        // return embeddedServletContainerCustomizer;
-
-        // return Container -> Container.addErrorPages(new
-        // ErrorPage(MultipartException.class, "/uploadError"));
-        return container -> container.addErrorPages(new ErrorPage(MultipartException.class, "/uploadError"));
-    }
-
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeChangeInterceptor());
+    }
+
+    @Bean
+    public EmbeddedServletContainerCustomizer containerCustomizer(){
+        return container -> container.addErrorPages(new ErrorPage(MultipartException.class, "/uploadError"));
     }
 
     @Override
@@ -89,10 +71,12 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
             .build();
     }
 
-//    @Bean
-//    @Primary
-//    public UsersConnectionRepository getUsersConnectionRepository(DataSource dataSource, ConnectionFactoryLocator connectionFactoryLocator){
-//        return new JdbcUsersConnectionRepository(dataSource, connectionFactoryLocator, Encryptors.noOpText());
-//    }
+    @Bean
+    @Primary
+    public ObjectMapper objectMapper(Jackson2ObjectMapperBuilder builder){
+        ObjectMapper objectMapper = builder.createXmlMapper(false).build();
+        objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+        return objectMapper;
+    }
 
 }

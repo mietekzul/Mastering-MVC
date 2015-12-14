@@ -27,13 +27,13 @@ public @interface PastLocalDate {
 	class PastValidator implements ConstraintValidator<PastLocalDate, LocalDate> {
 
 		@Override
-		public void initialize(PastLocalDate constraintAnnotation) {
+		public void initialize(PastLocalDate past) {
 
 		}
 
 		@Override
-		public boolean isValid(LocalDate value, ConstraintValidatorContext context) {
-			return value == null || value.isBefore(LocalDate.now());
+		public boolean isValid(LocalDate localDate, ConstraintValidatorContext context) {
+			return localDate == null || localDate.isBefore(LocalDate.now());
 		}
 	}
 

@@ -19,12 +19,9 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api")
-//@Secured("ROLE_ADMIN")
 public class UserApiController {
 
     private UserRepository userRepository;
-
-
 
     @Autowired
     public UserApiController(UserRepository userRepository) {
@@ -44,7 +41,6 @@ public class UserApiController {
         }
         User saved = userRepository.save(user);
         return new ResponseEntity<>(saved, status);
-//        return userRepository.save(user);
     }
 
     @RequestMapping(value = "/user/{email}", method = RequestMethod.PUT)
@@ -54,7 +50,6 @@ public class UserApiController {
         }
         User saved = userRepository.update(email, user);
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
-//        return userRepository.save(email, user);
     }
 
     @RequestMapping(value = "/user/{email}", method = RequestMethod.DELETE)

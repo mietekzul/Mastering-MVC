@@ -11,6 +11,6 @@ public class LoginController {
 
     @RequestMapping("/login")
     public String authenticate() {
-        return "directory/login";
+        return "login";
     }
 }
